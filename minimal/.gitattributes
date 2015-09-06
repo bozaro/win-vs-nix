@@ -1,0 +1,2 @@
+*.bat	text eol=native
+*.asm	text eol=native
