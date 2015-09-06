@@ -34,5 +34,7 @@ fn main() {
 }
 
 fn step(exe: &str) {
-    Command::new(exe).output().unwrap_or_else(|e| { panic!("failed to execute process: {}", e) });
+    Command::new(exe) // .output().unwrap_or_else(|e| { panic!("failed to execute process: {}", e) });
+        .spawn().unwrap_or_else(|e| { panic!("failed to start process: {}", e) })
+        .wait().unwrap_or_else(|e| { panic!("failed to join process: {}", e) });
 }
