@@ -3,5 +3,6 @@
 .data
 .code
 Main:
+	xor	eax, eax
 	ret
 End Main
