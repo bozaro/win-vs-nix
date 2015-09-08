@@ -1,7 +1,8 @@
-﻿extern crate time;
+extern crate time;
 
 use std::env;
 use std::process::Command;
+use std::process::Stdio;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -35,6 +36,9 @@ fn main() {
 
 fn step(exe: &str) {
     Command::new(exe) // .output().unwrap_or_else(|e| { panic!("failed to execute process: {}", e) });
+        .stdin(Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
         .spawn().unwrap_or_else(|e| { panic!("failed to start process: {}", e) })
         .wait().unwrap_or_else(|e| { panic!("failed to join process: {}", e) });
 }
